@@ -23,6 +23,7 @@ module Ace
     def initialize(path)
       @path = path
       @data = File.read(path)
+      self.metadata = Hash.new
     end
 
     def parse
@@ -40,7 +41,6 @@ module Ace
       set_timestamps_in_metadata
     end
 
-    private
     def set_timestamps_in_metadata
       self.metadata[:created_at] ||= File.ctime(self.path)
       self.metadata[:updated_at] ||= File.mtime(self.path)

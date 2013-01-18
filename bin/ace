@@ -46,7 +46,8 @@ rules.rules.each do |klass, files|
       item = klass.create(raw_item.metadata, raw_item.content, file)
     else
       puts "~ Read #{file} without parse"
-      item = klass.create(Hash.new, File.read(file), file)
+      raw_item = Ace::RawItem.new(file).tap(&:set_timestamps_in_metadata)
+      item = klass.create(raw_item.metadata, File.read(file), file)
     end
   end
 end
