@@ -72,7 +72,7 @@ end
 
 unless ARGV.include?("--no-generate")
   puts
-  Ace::Item.all_instances.each do |item|
+  Ace::Item.all_instances.uniq.each do |item|
     item.save!
   end
 end
