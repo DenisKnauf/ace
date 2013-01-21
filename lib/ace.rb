@@ -137,8 +137,7 @@ module Ace
     end
 
     def server_path
-      absolute = self.output_path.sub(/^output\//, "")
-      absolute.sub! %r<(\.[^./])\.[^/]+$>, '\1'
+      absolute = self.output_path.sub(/^output\//, "").sub %r<(\.[^./]+)\.[^/]+$>, '\1'
       "/#{absolute}"
     end
 
